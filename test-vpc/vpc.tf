@@ -4,8 +4,8 @@
 terraform {
   cloud {
     organization = "final_project"
-    hostname = "app.terraform.io"
-
+#   hostname = "app.terraform.io"
+#
     workspaces {
       name = "test-vpc"
     }
