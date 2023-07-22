@@ -1,4 +1,4 @@
-#VPC(서브넷, 인터넷 게이트웨이, 라우팅 테이블) 스크립트 작성
+##VPC(서브넷, 인터넷 게이트웨이, 라우팅 테이블) 스크립트 작성
 # pwd    // /root/terraform/tf-test 위치에서 시작
 #@ vi main.tf
 provider "aws" {
