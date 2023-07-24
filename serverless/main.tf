@@ -1,4 +1,3 @@
-
 terraform {
   cloud {
     organization = "final_project"
