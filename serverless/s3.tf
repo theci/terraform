@@ -19,7 +19,7 @@ resource "aws_s3_bucket" "website_bucket" {
 #resource "aws_s3_object" "website_bucket" {
 #  bucket       = aws_s3_bucket.website_bucket.id
 ##  key          = "index.html"
-#  source       = "index.html"
+##  source       = "index.html"
 #  content_type = "text/html"
 #}
 
