@@ -10,7 +10,7 @@ terraform {
 }
 
 provider "aws" {
-#  profile = "default"
+##  profile = "default"
   region  = "ap-northeast-2"
 }
 resource "aws_dynamodb_table" "product_table" {
