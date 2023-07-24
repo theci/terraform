@@ -37,7 +37,7 @@ resource "aws_route53_record" "route53_record" {
 }
 
 
-# validate acm certificates
+## validate acm certificates
 resource "aws_acm_certificate_validation" "acm_certificate_validation" {
   provider = aws.virginia
   certificate_arn         = aws_acm_certificate.acm_certificate.arn
