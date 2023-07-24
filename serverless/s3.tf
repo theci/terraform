@@ -1,3 +1,16 @@
+provider "aws" {
+  alias = "virginia"
+  region = "us-east-1"
+  default_tags {
+    tags = {
+      project = "serverless-demo",
+      type    = "web",
+      iac     = "terraform"
+    }
+  }
+}
+
+
 
 resource "aws_s3_bucket" "website_bucket" {
   bucket = "final_project-event-page"
