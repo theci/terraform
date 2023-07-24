@@ -1,3 +1,15 @@
+terraform {
+  cloud {
+    organization = "final_project"
+#   hostname = "app.terraform.io"
+#
+    workspaces {
+      name = "vpc"
+    }
+  }
+}
+
+
 module "VPC" {
   source = "github.com/adwordshin/terraform_module/module/VPC"
   
