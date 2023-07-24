@@ -159,7 +159,6 @@ output "cloudfront_url" {
 # request public certificates from the amazon certificate manager.
 resource "aws_acm_certificate" "acm_certificate" {
   domain_name               = "*.toydream.shop"
-#  subject_alternative_names = ["changhoon.shop"]
   validation_method         = "DNS"
   provider = aws.virginia
   lifecycle {
@@ -170,7 +169,6 @@ resource "aws_acm_certificate" "acm_certificate" {
 # get details about a route 53 hosted zone
 data "aws_route53_zone" "route53_zone" {
   zone_id      = "Z10449893AKP9L3IDXBVR"
-#  name         = "changhoon.shop"
   private_zone = false
 }
 
