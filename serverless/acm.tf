@@ -1,8 +1,6 @@
 ########## ACM, Route53
 
 
-
-
 # request public certificates from the amazon certificate manager.
 resource "aws_acm_certificate" "acm_certificate" {
   domain_name               = "*.changhoon.shop"
