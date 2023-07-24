@@ -59,7 +59,6 @@ resource "aws_api_gateway_method_response" "test_options_200" {
   response_models = {
     "application/json" = "Empty"
   }
-
   response_parameters = {
     "method.response.header.Access-Control-Allow-Headers" = true,
     "method.response.header.Access-Control-Allow-Methods" = true,
@@ -95,15 +94,6 @@ resource "aws_api_gateway_integration" "test_options_mock" {
 EOF
   }
 }
-
-
-
-
-
-
-
-
-
 
 resource "aws_api_gateway_integration" "createproduct-lambda" {
   rest_api_id             = aws_api_gateway_rest_api.product_apigw.id
@@ -159,19 +149,10 @@ resource "aws_api_gateway_stage" "lambda" {
   rest_api_id   = aws_api_gateway_rest_api.product_apigw.id
   stage_name    = "run" # Any Name you wish
 }
-
-
-
 output "deployment_invoke_url" {
   description = "Deployment invoke url"
   value       = aws_api_gateway_stage.lambda.invoke_url
 }
-
-
-
-
-
-
 
 
 resource "aws_iam_role" "ProductLambdaRole" {
@@ -205,9 +186,6 @@ resource "aws_iam_role_policy_attachment" "ProductLambdaRolePolicy" {
   role       = aws_iam_role.ProductLambdaRole.name
   policy_arn = aws_iam_policy.ProductLambdaPolicy.arn
 }
-
-
-
 
 resource "aws_lambda_function" "CreateProductHandler" {
   function_name = "CreateProductHandler"

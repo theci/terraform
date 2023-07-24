@@ -43,7 +43,7 @@ resource "aws_cloudfront_distribution" "cdn_static_site" {
     }
   }
 
-  aliases = ["blog4.changhoon.shop"]
+  aliases = ["event.toydream.shop"]
 
   viewer_certificate {
     cloudfront_default_certificate = true

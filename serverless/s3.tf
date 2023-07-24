@@ -1,20 +1,6 @@
-provider "aws" {
-  alias = "virginia"
-  region = "us-east-1"
-  default_tags {
-    tags = {
-      project = "serverless-demo",
-      type    = "web",
-      iac     = "terraform"
-    }
-  }
-}
-
-
-######### S3 ##########
 
 resource "aws_s3_bucket" "website_bucket" {
-  bucket = "my-unique-bucket-peach1102"
+  bucket = "final_project-event-page"
 }
 
 #resource "aws_s3_object" "website_bucket" {
@@ -52,9 +38,6 @@ resource "aws_s3_bucket_acl" "example" {
   acl    = "private"
 }
 
-
-
-
 resource "aws_s3_bucket_policy" "allow_access_from_another_account" {
   bucket = aws_s3_bucket.website_bucket.id
   policy = data.aws_iam_policy_document.allow_access_from_another_account.json
@@ -64,7 +47,7 @@ data "aws_iam_policy_document" "allow_access_from_another_account" {
   statement {
     principals {
       type        = "AWS"
-      identifiers = ["782638322607"]
+      identifiers = ["451456566564"]
     }
 
     actions = [

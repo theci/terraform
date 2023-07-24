@@ -9,8 +9,6 @@ import uuid
 
 PARTITION_KEY = 'user_id'
 
-
-    
 def lambda_handler(event, context):
     # AWS SDK의 DynamoDB 클라이언트를 생성합니다.
     user_id=uuid.uuid4()

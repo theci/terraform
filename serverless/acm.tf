@@ -1,9 +1,8 @@
 ########## ACM, Route53
 
-
 # request public certificates from the amazon certificate manager.
 resource "aws_acm_certificate" "acm_certificate" {
-  domain_name               = "*.changhoon.shop"
+  domain_name               = "*.toydream.shop"
 #  subject_alternative_names = ["changhoon.shop"]
   validation_method         = "DNS"
   provider = aws.virginia
@@ -14,7 +13,7 @@ resource "aws_acm_certificate" "acm_certificate" {
 
 # get details about a route 53 hosted zone
 data "aws_route53_zone" "route53_zone" {
-  zone_id      = "Z0209195I0PT3MTRG9LY"
+  zone_id      = "Z10449893AKP9L3IDXBVR"
 #  name         = "changhoon.shop"
   private_zone = false
 }
@@ -47,7 +46,7 @@ resource "aws_acm_certificate_validation" "acm_certificate_validation" {
 
 resource "aws_route53_record" "blog" {
   zone_id = data.aws_route53_zone.route53_zone.zone_id
-  name    = "blog4.changhoon.shop"
+  name    = "event.toydream.shop"
   type    = "A"
 
   alias {
