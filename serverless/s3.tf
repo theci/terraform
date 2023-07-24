@@ -13,7 +13,7 @@ provider "aws" {
 #
 
 resource "aws_s3_bucket" "website_bucket" {
-  bucket = "final_project-event-page"
+  bucket = "final-project-event-page"
 }
 
 #resource "aws_s3_object" "website_bucket" {
