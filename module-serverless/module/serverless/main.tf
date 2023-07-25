@@ -41,7 +41,7 @@ resource "aws_lambda_function" "CreateProductHandler" {
       PRODUCT_TABLE = aws_dynamodb_table.product_table.name
    }
   }
-  source_code_hash = filebase64sha256("./product_lambda.zip")
+  source_code_hash = filebase64sha256("${file("${path.module}/product_lambda.zip")
   role = aws_iam_role.ProductLambdaRole.arn
   timeout     = "5"
   memory_size = "128"
