@@ -147,17 +147,17 @@ resource "aws_cloudfront_origin_access_control" "default" {
 
 ########## ACM, Route53
 
-provider "aws" {
-  alias = "virginia"
-  region = "us-east-1"
-  default_tags {
-    tags = {
-      project = "serverless-demo",
-      type    = "web",
-      iac     = "terraform"
-    }
-  }
-}
+#provider "aws" {
+#  alias = "virginia"
+#  region = "us-east-1"
+#  default_tags {
+#    tags = {
+#      project = "serverless-demo",
+#      type    = "web",
+#      iac     = "terraform"
+#    }
+#  }
+#}
 
 # request public certificates from the amazon certificate manager.
 resource "aws_acm_certificate" "acm_certificate" {
