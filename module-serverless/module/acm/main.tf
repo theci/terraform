@@ -1,4 +1,10 @@
 ########## ACM, Route53
+provider "aws" {
+#  profile = "default"
+  region  = "ap-northeast-2"
+}
+
+
 
 # request public certificates from the amazon certificate manager.
 resource "aws_acm_certificate" "acm_certificate" {
