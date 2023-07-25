@@ -1,3 +1,18 @@
+terraform {
+  cloud {
+    organization = "final_project"
+#   hostname = "app.terraform.io"
+#
+    workspaces {
+      name = "seoul-nodegroup"
+    }
+  }
+}
+
+provider "aws" {
+  region = "ap-northeast-2"
+}
+
 module "node-group" {
   source = "github.com/adwordshin/terraform_module/module/EKS/Node_Group"
 

@@ -1,3 +1,18 @@
+terraform {
+  cloud {
+    organization = "final_project"
+#   hostname = "app.terraform.io"
+#
+    workspaces {
+      name = "seoul-nat-bastion"
+    }
+  }
+}
+
+provider "aws" {
+  region = "ap-northeast-2"
+}
+
 module "eip-natgw" {
   source = "github.com/adwordshin/terraform_module/module/NATGW_Bastion"
 
