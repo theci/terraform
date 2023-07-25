@@ -1,10 +1,16 @@
 ########## ACM, Route53
+
 provider "aws" {
-#  profile = "default"
-  region  = "ap-northeast-2"
+  alias = "virginia"
+  region = "us-east-1"
+  default_tags {
+    tags = {
+      project = "serverless-demo",
+      type    = "web",
+      iac     = "terraform"
+    }
+  }
 }
-
-
 
 # request public certificates from the amazon certificate manager.
 resource "aws_acm_certificate" "acm_certificate" {
