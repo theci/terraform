@@ -15,12 +15,12 @@ provider "aws" {
 }
 
 module "acm" {
-  source  = "./module/acm"
+  source  = "./module/s3"
 }
 
 
 module "cloudfront" {
-  source  = "./module/cloudfront"
+  source  = "./module/s3"
 }
 
 
@@ -30,15 +30,14 @@ module "s3" {
 
 
 module "lambda" {
-  source  = "./module/serverless/lambda"
+  source  = "./module/serverless"
 }
 
 
 module "dynamodb" {
-  source  = "./module/serverless/dynamodb"
+  source  = "./module/serverless"
 }
 
-
 module "apigw" {
-  source  = "./module/serverless/apigw"
+  source  = "./module/serverless"
 }
