@@ -4,15 +4,15 @@ terraform {
 #   hostname = "app.terraform.io"
 #
     workspaces {
-      name = "vpc"
+      name = "project-seoul-vpc"
     }
   }
 }
 
 provider "aws" {
-#  profile = "default"
-  region  = "ap-northeast-2"
+  region = "ap-northeast-2"
 }
+
 
 module "VPC" {
   source = "github.com/adwordshin/terraform_module/module/VPC"
