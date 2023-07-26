@@ -20,6 +20,6 @@ module "s3" {
 
 
 module "lambda" {
-  source  = "./module/serverless/apigw"
+  source  = "./module/serverless/lambda"
 }
 
