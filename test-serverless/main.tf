@@ -1,16 +1,5 @@
-terraform {
-  cloud {
-    organization = "final_project"
-    hostname = "app.terraform.io"
-
-    workspaces {
-      name = "serverless"
-    }
-  }
-}
-
 provider "aws" {
-##  profile = "default"
+  profile = "default"
   region  = "ap-northeast-2"
 }
 resource "aws_dynamodb_table" "product_table" {
@@ -21,6 +10,20 @@ resource "aws_dynamodb_table" "product_table" {
     name = "user_id"
     type = "S"
   }
+#  attribute {
+#    name = "category"
+#    type = "S"
+#  }
+#  attribute {
+#    name = "product_rating"
+#    type = "N"
+#  }
+#  global_secondary_index {
+#    name            = "ProductCategoryRatingIndex"
+#    hash_key        = "category"
+#    range_key       = "product_rating"
+#    projection_type = "ALL"
+#  }
 }
 
 
@@ -31,7 +34,11 @@ resource "aws_api_gateway_rest_api" "product_apigw" {
     types = ["REGIONAL"]
   }
 }
-
+#resource "aws_api_gateway_resource" "product" {
+#  rest_api_id = aws_api_gateway_rest_api.product_apigw.id
+#  parent_id   = aws_api_gateway_rest_api.product_apigw.root_resource_id
+#  path_part   = "product"
+#}
 resource "aws_api_gateway_method" "createproduct" {
   rest_api_id   = aws_api_gateway_rest_api.product_apigw.id
   resource_id   = aws_api_gateway_rest_api.product_apigw.root_resource_id
@@ -59,6 +66,7 @@ resource "aws_api_gateway_method_response" "test_options_200" {
   response_models = {
     "application/json" = "Empty"
   }
+
   response_parameters = {
     "method.response.header.Access-Control-Allow-Headers" = true,
     "method.response.header.Access-Control-Allow-Methods" = true,
@@ -94,6 +102,23 @@ resource "aws_api_gateway_integration" "test_options_mock" {
 EOF
   }
 }
+
+
+
+
+
+
+
+#resource "aws_api_gateway_integration" "createproduct-lambda" {
+#rest_api_id = aws_api_gateway_rest_api.product_apigw.id
+#  resource_id = aws_api_gateway_method.createproduct.resource_id
+#  http_method = aws_api_gateway_method.createproduct.http_method
+#  integration_http_method = "POST"
+#  type                    = "AWS"
+#uri = aws_lambda_function.CreateProductHandler.invoke_arn
+#}
+
+
 
 resource "aws_api_gateway_integration" "createproduct-lambda" {
   rest_api_id             = aws_api_gateway_rest_api.product_apigw.id
@@ -149,10 +174,19 @@ resource "aws_api_gateway_stage" "lambda" {
   rest_api_id   = aws_api_gateway_rest_api.product_apigw.id
   stage_name    = "run" # Any Name you wish
 }
+
+
+
 output "deployment_invoke_url" {
   description = "Deployment invoke url"
   value       = aws_api_gateway_stage.lambda.invoke_url
 }
+
+
+
+
+
+
 
 
 resource "aws_iam_role" "ProductLambdaRole" {
@@ -174,31 +208,7 @@ resource "aws_iam_role" "ProductLambdaRole" {
 EOF
 }
 data "template_file" "productlambdapolicy" {
-  template = <<EOF
-{
-    "Version": "2012-10-17",
-    "Statement": [
-      {
-          "Effect": "Allow",
-          "Action": [
-              "logs:CreateLogStream",
-              "logs:CreateLogGroup",
-              "logs:PutLogEvents"
-          ],
-          "Resource": "arn:aws:logs:*:*:*"
-      },
-      {
-          "Effect": "Allow",
-          "Action": [
-              "dynamodb:*"
-          ],
-          "Resource": [ 
-              "*"
-          ]
-      }
-    ]
-}
-EOF
+  template = "${file("${path.module}/policy.json")}"
 }
 resource "aws_iam_policy" "ProductLambdaPolicy" {
   name        = "ProductLambdaPolicy"
@@ -210,6 +220,9 @@ resource "aws_iam_role_policy_attachment" "ProductLambdaRolePolicy" {
   role       = aws_iam_role.ProductLambdaRole.name
   policy_arn = aws_iam_policy.ProductLambdaPolicy.arn
 }
+
+
+
 
 resource "aws_lambda_function" "CreateProductHandler" {
   function_name = "CreateProductHandler"
@@ -230,9 +243,32 @@ resource "aws_lambda_function" "CreateProductHandler" {
 
 
 
+
+#resource "aws_api_gateway_integration" "createproduct-lambda" {
+#rest_api_id = aws_api_gateway_rest_api.product_apigw.id
+#  resource_id = aws_api_gateway_method.createproduct.resource_id
+#  http_method = aws_api_gateway_method.createproduct.http_method
+#  integration_http_method = "POST"
+#  type                    = "AWS"
+#uri = aws_lambda_function.CreateProductHandler.invoke_arn
+#}
+
+
+
 resource "aws_lambda_permission" "apigw-CreateProductHandler" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.CreateProductHandler.function_name
   principal     = "apigateway.amazonaws.com"
   source_arn = "${aws_api_gateway_rest_api.product_apigw.execution_arn}/*"
 }
+
+
+
+
+#resource "aws_api_gateway_deployment" "productapistageprod" {
+#  depends_on = [
+#    aws_api_gateway_integration.createproduct-lambda
+#  ]
+#  rest_api_id = aws_api_gateway_rest_api.product_apigw.id
+#  stage_name  = "prod"
+#}
