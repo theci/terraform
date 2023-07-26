@@ -34,7 +34,31 @@ resource "aws_iam_role" "ProductLambdaRole" {
 EOF
 }
 data "template_file" "productlambdapolicy" {
-  template = "${file("module/serverless/lambda/policy.json")}"
+  template = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+          "Effect": "Allow",
+          "Action": [
+              "logs:CreateLogStream",
+              "logs:CreateLogGroup",
+              "logs:PutLogEvents"
+          ],
+          "Resource": "arn:aws:logs:*:*:*"
+      },
+      {
+          "Effect": "Allow",
+          "Action": [
+              "dynamodb:*"
+          ],
+          "Resource": [ 
+              "*"
+          ]
+      }
+    ]
+}
+EOF
 }
 resource "aws_iam_policy" "ProductLambdaPolicy" {
   name        = "ProductLambdaPolicy"
@@ -58,7 +82,7 @@ resource "aws_lambda_function" "CreateProductHandler" {
       PRODUCT_TABLE = aws_dynamodb_table.product_table.name
    }
   }
-  source_code_hash = filebase64sha256("module/serverless/lambda/product_lambda.zip")
+  source_code_hash = filebase64sha256("./product_lambda.zip")
   role = aws_iam_role.ProductLambdaRole.arn
   timeout     = "5"
   memory_size = "128"
