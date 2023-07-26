@@ -23,11 +23,3 @@ module "lambda" {
   source  = "./module/serverless/apigw"
 }
 
-
-module "dynamodb" {
-  source  = "./module/serverless/dynamodb"
-}
-
-module "apigw" {
-  source  = "./module/serverless/lambda"
-}
