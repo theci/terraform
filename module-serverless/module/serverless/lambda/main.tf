@@ -55,3 +55,16 @@ resource "aws_lambda_permission" "apigw-CreateProductHandler" {
   principal     = "apigateway.amazonaws.com"
   source_arn = "${aws_api_gateway_rest_api.product_apigw.execution_arn}/*"
 }
+
+
+
+## dynamodb
+resource "aws_dynamodb_table" "product_table" {
+  name         = "UserTable"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "user_id"
+  attribute {
+    name = "user_id"
+    type = "S"
+  }
+}
