@@ -14,30 +14,20 @@ provider "aws" {
   region  = "ap-northeast-2"
 }
 
-module "acm" {
-  source  = "./module/s3"
-}
-
-
-module "cloudfront" {
-  source  = "./module/s3"
-}
-
-
 module "s3" {
   source  = "./module/s3"
 }
 
 
 module "lambda" {
-  source  = "./module/serverless"
+  source  = "./module/serverless/apigw"
 }
 
 
 module "dynamodb" {
-  source  = "./module/serverless"
+  source  = "./module/serverless/dynamodb"
 }
 
 module "apigw" {
-  source  = "./module/serverless"
+  source  = "./module/serverless/lambda"
 }
