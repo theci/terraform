@@ -23,3 +23,10 @@ module "lambda" {
   source  = "./module/serverless/lambda"
 }
 
+module "apigw" {
+  source  = "./module/serverless/apigw"
+}
+
+module "dynamodb" {
+  source  = "./module/serverless/dynamodb"
+}

@@ -79,7 +79,7 @@ resource "aws_lambda_function" "CreateProductHandler" {
   environment {
     variables = {
       REGION        = "ap-northeast-2"
-      PRODUCT_TABLE = aws_dynamodb_table.product_table.name
+      PRODUCT_TABLE = var.table_name #aws_dynamodb_table.product_table.name
    }
   }
   source_code_hash = filebase64sha256("module/serverless/lambda/product_lambda.zip")
@@ -99,57 +99,31 @@ resource "aws_lambda_permission" "apigw-CreateProductHandler" {
 
 
 
+
+
+# 다른 폴더에 있는 API Gateway Rest API 리소스의 데이터 소스 정의
+data "aws_api_gateway_rest_api" "product_apigw" {
+  # 다른 폴더의 API Gateway Rest API가 있는 지역과 계정 정보를 지정해야 합니다.
+  # region, profile 등은 상황에 맞게 수정하십시오.
+  region = "ap-northeast-2"
+  # profile = "my-aws-profile"
+  id     = "your-api-gateway-rest-api-id" # API Gateway Rest API의 ID를 입력합니다.
+}
+
+# 다른 폴더에 있는 API Gateway Method 리소스의 데이터 소스 정의
+data "aws_api_gateway_method" "createproduct" {
+  rest_api_id = data.aws_api_gateway_rest_api.product_apigw.id
+  # 다른 폴더의 API Gateway Method의 HTTP 메서드를 입력합니다.
+  http_method = "POST"
+}
+
+
 resource "aws_api_gateway_integration" "createproduct-lambda" {
-  rest_api_id             = aws_api_gateway_rest_api.product_apigw.id
-  resource_id             = aws_api_gateway_rest_api.product_apigw.root_resource_id
-  http_method             = aws_api_gateway_method.createproduct.http_method
+  rest_api_id             = data.aws_api_gateway_rest_api.product_apigw.id
+  resource_id             = data.aws_api_gateway_rest_api.product_apigw.root_resource_id
+  http_method             = data.aws_api_gateway_method.createproduct.http_method
   integration_http_method = "POST" #  Lambda function can only be invoked via POST
   type                    = "AWS"
   uri                     = aws_lambda_function.CreateProductHandler.invoke_arn
   content_handling        = "CONVERT_TO_TEXT"
-}
-
-resource "aws_api_gateway_method_response" "lambda" {
-  rest_api_id = aws_api_gateway_rest_api.product_apigw.id
-  resource_id = aws_api_gateway_rest_api.product_apigw.root_resource_id
-  http_method = aws_api_gateway_method.createproduct.http_method
-  status_code = "200"
-
-  response_models = {
-    "application/json" = "Empty"
-  }
-}
-
-resource "aws_api_gateway_integration_response" "lambda" {
-  rest_api_id = aws_api_gateway_rest_api.product_apigw.id
-  resource_id = aws_api_gateway_rest_api.product_apigw.root_resource_id
-  http_method = aws_api_gateway_method.createproduct.http_method
-  status_code = aws_api_gateway_method_response.lambda.status_code
-  depends_on  = [aws_api_gateway_integration.createproduct-lambda]
-}
-
-
-
-
-resource "aws_api_gateway_deployment" "lambda" {
-  rest_api_id = aws_api_gateway_rest_api.product_apigw.id
-
-  triggers = {
-    redeployment = sha1(jsonencode([
-      aws_api_gateway_method.createproduct.id,
-      aws_api_gateway_integration.createproduct-lambda.id,
-      aws_api_gateway_method_response.lambda,
-      aws_api_gateway_integration_response.lambda,
-    ]))
-  }
-
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-
-resource "aws_api_gateway_stage" "lambda" {
-  deployment_id = aws_api_gateway_deployment.lambda.id
-  rest_api_id   = aws_api_gateway_rest_api.product_apigw.id
-  stage_name    = "run" # Any Name you wish
 }

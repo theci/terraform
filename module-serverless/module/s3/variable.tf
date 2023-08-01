@@ -18,3 +18,8 @@ variable "aws_iam_policy_document_identifier" {
   type = string
   default = "451456566564"
 }
+
+variable "acm_domain_name" {
+  type = string
+  default = "*.toydream.shop"
+}

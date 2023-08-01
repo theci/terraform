@@ -139,7 +139,7 @@ resource "aws_cloudfront_origin_access_control" "default" {
 
 ### acm
 resource "aws_acm_certificate" "acm_certificate" {
-  domain_name               = "*.toydream.shop"
+  domain_name               = var.acm_domain_name
   validation_method         = "DNS"
   provider = aws.virginia
   lifecycle {
