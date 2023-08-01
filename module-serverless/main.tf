@@ -1,8 +1,7 @@
 terraform {
   cloud {
     organization = "final_project"
-##   hostname = "app.terraform.io"
-#
+    
     workspaces {
       name = "module-serverless"
     }
