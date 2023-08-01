@@ -14,9 +14,9 @@ provider "aws" {
 }
 
 module "s3" {
-  source  = "./module/s3"
+  source  = "./module/frontend"
 }
 
 module "serverless" {
-  source  = "./module/serverless"
+  source  = "./module/backend"
 }
