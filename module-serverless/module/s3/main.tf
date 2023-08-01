@@ -10,19 +10,9 @@ provider "aws" {
   }
 }
 
-#
-
 resource "aws_s3_bucket" "website_bucket" {
   bucket = "final-project-event-page"
 }
-
-#resource "aws_s3_object" "website_bucket" {
-#  bucket       = aws_s3_bucket.website_bucket.id
-##  key          = "index.html"
-##  source       = "index.html"
-#  content_type = "text/html"
-#}
-
 
 
 ### 버킷 정책
@@ -60,7 +50,7 @@ data "aws_iam_policy_document" "allow_access_from_another_account" {
   statement {
     principals {
       type        = "AWS"
-      identifiers = ["451456566564"]
+      identifiers = [var.aws_iam_policy_document_identifier]
     }
 
     actions = [
@@ -84,7 +74,6 @@ resource "aws_s3_bucket_website_configuration" "website_bucket" {
 
 
 ######## cloudfront######
-
 resource "aws_cloudfront_origin_access_identity" "example" {
   comment = "Some comment"
 }
@@ -127,7 +116,7 @@ resource "aws_cloudfront_distribution" "cdn_static_site" {
     }
   }
 
-  aliases = ["event.toydream.shop"]
+  aliases = [var.cloudfront_alias]
 
   viewer_certificate {
     cloudfront_default_certificate = true
@@ -145,21 +134,10 @@ resource "aws_cloudfront_origin_access_control" "default" {
   signing_protocol                  = "sigv4"
 }
 
-########## ACM, Route53
 
-#provider "aws" {
-#  alias = "virginia"
-#  region = "us-east-1"
-#  default_tags {
-#    tags = {
-#      project = "serverless-demo",
-#      type    = "web",
-#      iac     = "terraform"
-#    }
-#  }
-#}
 
-# request public certificates from the amazon certificate manager.
+
+### acm
 resource "aws_acm_certificate" "acm_certificate" {
   domain_name               = "*.toydream.shop"
   validation_method         = "DNS"
@@ -169,13 +147,13 @@ resource "aws_acm_certificate" "acm_certificate" {
   }
 }
 
-# get details about a route 53 hosted zone
+
 data "aws_route53_zone" "route53_zone" {
-  zone_id      = "Z10449893AKP9L3IDXBVR"
+  zone_id      = var.zone_id
   private_zone = false
 }
 
-# create a record set in route 53 for domain validatation
+
 resource "aws_route53_record" "route53_record" {
   for_each = {
     for dvo in aws_acm_certificate.acm_certificate.domain_validation_options : dvo.domain_name => {
@@ -194,7 +172,6 @@ resource "aws_route53_record" "route53_record" {
 }
 
 
-## validate acm certificates
 resource "aws_acm_certificate_validation" "acm_certificate_validation" {
   provider = aws.virginia
   certificate_arn         = aws_acm_certificate.acm_certificate.arn
@@ -203,7 +180,7 @@ resource "aws_acm_certificate_validation" "acm_certificate_validation" {
 
 resource "aws_route53_record" "blog" {
   zone_id = data.aws_route53_zone.route53_zone.zone_id
-  name    = "event.toydream.shop"
+  name    = var.route53_record
   type    = "A"
 
   alias {
