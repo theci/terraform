@@ -1,6 +1,6 @@
 variable "zone_id" {
   type = string
-  default = "Z01335121DQOOIZ9KEEJS"
+  default = "Z02361122FE9HJO7PIQNV"
 }
 
 variable "route53_record" {
@@ -16,7 +16,7 @@ variable "cloudfront_alias" {
 
 variable "aws_iam_policy_document_identifier" {
   type = string
-  default = "578310434439"
+  default = "782638322607"
 }
 
 variable "acm_domain_name" {
