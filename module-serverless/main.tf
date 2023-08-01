@@ -1,7 +1,7 @@
 terraform {
   cloud {
     organization = "final_project"
-    
+
     workspaces {
       name = "module-serverless"
     }
@@ -19,3 +19,4 @@ module "s3" {
 module "serverless" {
   source  = "./module/backend"
 }
+#
