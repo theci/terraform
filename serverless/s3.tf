@@ -60,7 +60,7 @@ data "aws_iam_policy_document" "allow_access_from_another_account" {
   statement {
     principals {
       type        = "AWS"
-      identifiers = ["451456566564"]
+      identifiers = ["578310434439"]
     }
 
     actions = [
@@ -169,7 +169,7 @@ resource "aws_acm_certificate" "acm_certificate" {
 
 # get details about a route 53 hosted zone
 data "aws_route53_zone" "route53_zone" {
-  zone_id      = "Z10449893AKP9L3IDXBVR"
+  zone_id      = "Z01335121DQOOIZ9KEEJS"
   private_zone = false
 }
 
