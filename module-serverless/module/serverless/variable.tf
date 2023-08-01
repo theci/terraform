@@ -8,7 +8,7 @@ variable "function_name" {
   default = "CreateProductHandler"
 }
 
-variable "table_name" {
+variable "stage_name" {
   type = string
   default = "run"
 }
