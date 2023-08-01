@@ -10,7 +10,7 @@ resource "aws_acm_certificate" "acm_certificate" {
 
 
 data "aws_route53_zone" "route53_zone" {
-  zone_id      = var.zone_id
+  zone_id      = "Z02361122FE9HJO7PIQNV"
   private_zone = false
 }
 
