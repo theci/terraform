@@ -72,7 +72,7 @@ resource "aws_iam_role_policy_attachment" "ProductLambdaRolePolicy" {
 }
 
 resource "aws_lambda_function" "CreateProductHandler" {
-  function_name = "CreateProductHandler"
+  function_name = var.function_name
   filename = "./product_lambda.zip"
   handler = "createproduct.lambda_handler"
   runtime = "python3.8"

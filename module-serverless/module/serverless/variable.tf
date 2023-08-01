@@ -5,15 +5,10 @@ variable "table_name" {
 
 variable "function_name" {
   type = string
-  default = "UserTable"
+  default = "CreateProductHandler"
 }
 
 variable "table_name" {
   type = string
-  default = "UserTable"
-}
-
-variable "table_name" {
-  type = string
-  default = "stage_name"
+  default = "run"
 }
