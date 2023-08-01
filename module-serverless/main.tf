@@ -17,15 +17,6 @@ module "s3" {
   source  = "./module/s3"
 }
 
-
-module "lambda" {
-  source  = "./module/serverless/lambda"
-}
-
-module "apigw" {
-  source  = "./module/serverless/apigw"
-}
-
-module "dynamodb" {
-  source  = "./module/serverless/dynamodb"
+module "serverless" {
+  source  = "./module/serverless"
 }
