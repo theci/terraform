@@ -1,16 +1,13 @@
 <p align="center">
   <div align="center"><img src="https://user-images.githubusercontent.com/110512212/260196120-a9b37bb7-bbeb-4ff8-a170-29a0efba4d59.png" width="50%"/></div>
   <br>  
-  <div align="center"><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F4fdd23a0-886e-4f5c-9448-14e8cd2dc9d8%2F0cf1d10235c37b2635c02719125da37cc1bd632518198b1e1da7f5a364156540.png?table=block&id=a5fce4ec-5eaa-4f13-984a-30f29b85f4d1&width=3330&userId=&cache=v2" width="40%"/></div>
-</p>
 
-
-<p align="center">"중고 거래부터 동네 정보까지"<br> <span>당근마켓</span>을 모티브로 만든 중고거래 플랫폼 API 서버 토이 프로젝트입니다.</p>
+<p align="center">"메가존 최종 프로젝트"<br> <span>토이드림</span>의 요구사항을 바탕으로 인프라를 구축 테라폼</p>
 
 <br>
 <br>
 
-### 🥕 월 1000만명 이상 사용하고 있는 <span>당근마켓</span>은 어떻게 만들어진 것일까요?
+### 📌 고객사의 요구사항 
 <p>
 대규모 트래픽을 어떻게 처리하고 있을까요? <br>
 대용량 데이터를 어떻게 다루고 있을까요? <br>이러한 궁금증들을 통해서 직접 당근마켓 서버를 구현해보는 프로젝트를 진행하게 되었습니다.<p>
