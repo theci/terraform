@@ -1,5 +1,5 @@
 <p align="center">
-  <div align="center"><img src="https://user-images.githubusercontent.com/110512212/260196120-a9b37bb7-bbeb-4ff8-a170-29a0efba4d59.png" width="15%"/></div>
+  <div align="center"><img src="https://user-images.githubusercontent.com/110512212/260196120-a9b37bb7-bbeb-4ff8-a170-29a0efba4d59.png" width="50%"/></div>
   <br>  
   <div align="center"><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F4fdd23a0-886e-4f5c-9448-14e8cd2dc9d8%2F0cf1d10235c37b2635c02719125da37cc1bd632518198b1e1da7f5a364156540.png?table=block&id=a5fce4ec-5eaa-4f13-984a-30f29b85f4d1&width=3330&userId=&cache=v2" width="40%"/></div>
 </p>
