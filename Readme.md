@@ -1,77 +1,41 @@
-<p align="center">
-  <div align="center"><img src="https://user-images.githubusercontent.com/110512212/260196120-a9b37bb7-bbeb-4ff8-a170-29a0efba4d59.png" width="50%"/></div>
-  <br>  
+# 프로젝트 명 : E-commerce 서비스를 위한 멀티리전 클라우드 네이티브 설계 및 구축
 
-<p align="center">"메가존 최종 프로젝트"<br> <span>토이드림</span>의 요구사항을 바탕으로 인프라를 구축 테라폼</p>
 
-<br>
-<br>
-
-### 📌 고객사의 요구사항 
-<p>
-대규모 트래픽을 어떻게 처리하고 있을까요? <br>
-대용량 데이터를 어떻게 다루고 있을까요? <br>이러한 궁금증들을 통해서 직접 당근마켓 서버를 구현해보는 프로젝트를 진행하게 되었습니다.<p>
-
-<br>
-
-### 🥕 단순히 <span>당근마켓</span>의 기능만 구현하지 않았습니다!
-
-* 실제 당근마켓이 대규모 트래픽을 장애없이 어떻게 처리하고 있는지 
-* 채팅과 실시간 푸시 알람 서비스는 어떻게 구현하였는지 
-* 유지보수성을 위한 객체지향적 설계는 어떻게 이루어져야 하는지
-* 냄새나는 코드를 제거해서 읽기 좋은 코드를 만들기 위해서는 어떻게해야 하는지
-
-대용량 트래픽에도 장애없이 동작할 수 있도록 성능과 유지보수성을 고려한 서비스를 만들기 위해서, 읽기 좋은 코드 객체지향적 설계를 위해 노력하였습니다.
+### 📌 설계 목표
+<p></p>
+- 기존의 수동적이고 번거로운 인프라 구축 작업을 자동화하여 리소스 할당과 환경 설정을 빠르고 일관되게 수행하였습니다.
+<p></p>
+- CI/CD 파이프라인을 구축하여 애플리케이션의 지속적인 통합과 자동 배포를 통해 개발 및 업데이트 주기를 단축하고, 안정적인 서비스 제공을 실현하였습니다.
+<p></p>
+- 서버리스 아키텍처를 도입하여 확장성과 유연성을 확보하였고 사용자들의 경험을 향상시키고 신속한 서비스 확장을 가능하게 하여 사용자 유입 증가와 고객 데이터를 수집하였습니다.
+<p></p>
+- AWS 보안 도구를 사용하여 네트워크와 시스템에서의 위협을 감지하고 보호하는 기능을 통해 사용자와 서버의 안정성을 보장했습니다.
 
 <br>
 <br>
+<br>
 
-### 🥕 기술적 이슈와 해결 과정 
-
-* 분산 서버 환경에서 세션 불일치 문제 해결하기
-    * [사용자가 증가하면 서버를 어떻게 확장해야 할까?](https://see-one.tistory.com/4)
-    * [분산서버 환경에서 발생할 수 있는 Session 불일치 문제를 해결해봅시다 (1) - Sticky Session](https://see-one.tistory.com/10)
-<!--     * [분산서버 환경에서 발생할 수 있는 Session 불일치 문제를 해결해봅시다 (2) - Session Clustering]() <img src="https://img.shields.io/badge/-WRITING-gray"><br> 
-    * [분산서버 환경에서 발생할 수 있는 Session 불일치 문제를 해결해봅시다 (3) - Redis와 Memcached]() <img src="https://img.shields.io/badge/-WRITING-gray"><br>  -->
-<!-- * 중복되는 로그인 체크 기능을 인터셉터를 이용해서 구현하기 
-    * [사용자 로그인 체크는 어디서 해야할까요 - Filter와 Interceptor]() <img src="https://img.shields.io/badge/-WRITING-gray"><br>  -->
-* `@Email` Validation이 정상적으로 동작하지 않는 문제 해결하기
-    * [무심코 적용한 Validation 의심해볼 필요가 있습니다](https://see-one.tistory.com/14) 
-<!-- * `@Cacheable` 이 정상적으로 동작하지 않는 문제 해결하기
-    * [당신의 @Cacheable이 동작하지 않는 이유 - Spring Dynamic Proxy 기반 AOP의 동작과정]() <img src="https://img.shields.io/badge/-WRITING-gray"><br> 
-* RDBMS의 가용성과 부하 분산을 위해 데이터베이스 이중화 적용하기 
-    * [RDBMS 서버의 부하 분산과 가용성을 위해 이중화를 적용해봅시다]() <img src="https://img.shields.io/badge/-WRITING-gray"><br>
-    * [Spring Data Jpa 프로젝트에 Mutli DataSource와 RoutingDataSource 적용하기]() <img src="https://img.shields.io/badge/-WRITING-gray"><br>
-    * [Spring 빈들의 순환참조가 발생하는 이유와 순환참조 문제 해결하기]() <img src="https://img.shields.io/badge/-WRITING-gray"><br>
-* Jenkins와 Docker를 이용하여 CI/CD 구현하기 
-    * [기업들은 왜 CI와 CD를 적용할까요?]() <img src="https://img.shields.io/badge/-WRITING-gray"><br>
-    * [Jenkins 파이프라인을 이용한 CI 구축하기]() <img src="https://img.shields.io/badge/-WRITING-gray"><br>
-    * [스프링 프로젝트를 Docker를 이용해서 배포하기]() <img src="https://img.shields.io/badge/-WRITING-gray"><br>
-* 내가 만든 서버는 얼마나 많은 사용자가 이용할 수 있는지 성능 테스트하기
-    * [내가 만든 서버는 얼마나 많은 사용자가 이용할 수 있을까요 - nGrinder를 이용한 성능 테스트]() <img src="https://img.shields.io/badge/-WRITING-gray"><br> -->
-
+### 🥕 프로젝트 전체 아키텍처
+<div align="center"><img src="https://user-images.githubusercontent.com/110512212/260613369-caf8564b-71f7-435d-b79d-717b65e993e6.png"></div>
+<br>
+<br>
 <br>
 
 
-<br>
 
-### 🥕 프로젝트 전체 구성도
-<div align="center"><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F0cc595f4-892b-417b-af33-35dfa0990515%2FUntitled.png?table=block&id=1efceeeb-099a-44bd-b3dc-6fe55ce66e26&width=3580&userId=&cache=v2"></div>
-<br>
-<br>
 
 ### 🥕 사용한 기술 스택
 
 <br>
 
-<div align="center"><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F610e4875-7e8e-4d51-a2f3-655f7f94d406%2Fskills.png?table=block&id=f8a8ad0d-b98b-4f4a-9601-f9ce3f6c8d30&width=1910&userId=&cache=v2" width="80%"></div>
+<div align="center"><img src="https://user-images.githubusercontent.com/110512212/260614133-f756066b-be48-46d4-9266-52ad9709b8f3.png" width="60%"></div>
 
 <br>
 
-### 🥕 프로젝트 화면 구성도 
+### 🥕 메인 홈페이지
 
 <br>
-<div align="center"><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F4dbc4761-ed47-4ef3-a2b7-87bcdcebcda0%2FUntitled.png?table=block&id=bec9e5a1-9037-46cc-868d-4134d7f9f614&width=3540&userId=&cache=v2">
+<div align="center"><img src="https://user-images.githubusercontent.com/110512212/260614391-ec02f782-c018-4515-8a4e-79c407d36c7c.png">
 
 
 
