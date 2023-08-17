@@ -15,7 +15,7 @@
 <br>
 <br>
 
-### 🥕 프로젝트 전체 아키텍처
+### 💻 프로젝트 전체 아키텍처
 <div align="center"><img src="https://user-images.githubusercontent.com/110512212/260613369-caf8564b-71f7-435d-b79d-717b65e993e6.png"></div>
 <br>
 <br>
@@ -24,7 +24,7 @@
 
 
 
-### 🥕 사용한 기술 스택
+### 🛠 사용한 기술 스택
 
 <br>
 
@@ -32,7 +32,7 @@
 
 <br>
 
-### 🥕 메인 홈페이지
+### 🖥 메인 홈페이지
 
 <br>
 <div align="center"><img src="https://user-images.githubusercontent.com/110512212/260614391-ec02f782-c018-4515-8a4e-79c407d36c7c.png">
